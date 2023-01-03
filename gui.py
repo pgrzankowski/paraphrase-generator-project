@@ -3,7 +3,8 @@ from PySide2.QtWidgets import QApplication, QMainWindow
 import sys
 
 from ui_paraphrase_generator import Ui_MainWindow
-from operations import swap_rhymes, swap_synonyms, add_adjectives
+from operations import swap_text, add_text
+
 
 class ParaphraseGeneratorWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -19,15 +20,15 @@ class ParaphraseGeneratorWindow(QMainWindow):
 
     def _swapRhymes(self):
         input_text = self.ui.inputText.toPlainText()
-        self.ui.outputText.setText(swap_rhymes(input_text))
+        self.ui.outputText.setText(swap_text(input_text, 'rhymes'))
 
     def _swapSynonyms(self):
         input_text = self.ui.inputText.toPlainText()
-        self.ui.outputText.setText(swap_synonyms(input_text))
+        self.ui.outputText.setText(swap_text(input_text, 'synonyms'))
 
     def _addAdjectives(self):
         input_text = self.ui.inputText.toPlainText()
-        self.ui.outputText.setText(add_adjectives(input_text))
+        self.ui.outputText.setText(add_text(input_text, 'adjectives'))
 
 
 def guiMain(args):

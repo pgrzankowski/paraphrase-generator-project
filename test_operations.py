@@ -1,12 +1,16 @@
-from operations import swap_rhymes, swap_synonyms, add_adjectives
+from operations import (
+    swap_rhymes,
+    swap_synonyms,
+    add_adjectives
+)
 
 
 def test_swap_rhymes():
-    pass
+    assert swap_rhymes('forgetful') == 'fretful'
 
 
 def test_swap_synonyms():
-    pass
+    assert swap_synonyms('ocean') == 'sea'
 
 
 def test_add_adjectives():
