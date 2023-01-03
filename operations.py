@@ -8,6 +8,15 @@ urls = {
 }
 
 
+# TODO
+"""
+Pobieraj tekst z inputText w taki sposób:
+- pobierz tekst do zmiennej (będzie typu: str)
+- zastosuj na nim funkcję .split(\n), żeby mieć listę osobnych lini
+- stosuj wybraną operację na całej lini żeby przyśpieszyć działanie
+"""
+
+
 def swap_text(text, param: str):
     result = ''
     for word in text.split():
