@@ -32,7 +32,9 @@ class Author:
         return self._name
 
     def titles(self):
-        all_titles = requests.get(urls['titles'].format(author=self._name)).json()
+        all_titles = requests.get(
+            urls['titles'].format(author=self._name)
+            ).json()
         titles = []
         for title in all_titles:
             titles.append(Title(self, title['title']))

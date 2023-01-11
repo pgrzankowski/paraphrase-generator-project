@@ -5,7 +5,8 @@ import sys
 
 from ui_paraphrase_generator import Ui_MainWindow
 from operations import swap_text, add_text
-from poems import get_authors
+from poem import get_authors
+from song import Song
 
 
 class ParaphraseGeneratorWindow(QMainWindow):
@@ -15,6 +16,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
         self.ui.setupUi(self)
         self._setupAuthorList()
         self._setupOperations()
+        self._setupSearchDetails()
         self.ui.stack.setCurrentIndex(0)
 
     def _setupOperations(self):
@@ -55,6 +57,18 @@ class ParaphraseGeneratorWindow(QMainWindow):
     def _selectTitle(self, item):
         poem = item.title.text()
         self.ui.inputText.setPlainText(poem)
+
+    def _setupSearchDetails(self):
+        self.ui.searchButton.clicked.connect(self._searchForSong)
+
+    def _searchForSong(self):
+        title = self.ui.titleInput.text()
+        artist = self.ui.artistInput.text()
+        song = Song(title, artist)
+        lyrics = song.lyrics
+        self.ui.inputText.setPlainText(lyrics)
+        self.ui.testOutputTitle.setText(title)
+        self.ui.testOutputArtist.setText(artist)
 
 
 def guiMain(args):

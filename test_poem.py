@@ -1,4 +1,4 @@
-from poems import Author
+from poem import Author
 
 
 def test_create_author():
