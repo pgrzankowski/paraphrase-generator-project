@@ -1,5 +1,6 @@
 import requests
-# from random import choice
+from string import punctuation
+from random import choice
 
 urls = {
     'rhymes': 'https://api.datamuse.com/words?rel_rhy={word}',
@@ -8,39 +9,68 @@ urls = {
 }
 
 
-# TODO
-"""
-Pobieraj tekst z inputText w taki sposób:
-- pobierz tekst do zmiennej (będzie typu: str)
-- zastosuj na nim funkcję .split(\n), żeby mieć listę osobnych lini
-- stosuj wybraną operację na całej lini żeby przyśpieszyć działanie
-"""
+def lines_to_text(lines: list):
+    text = ''
+    for line in lines:
+        text += line
+    return text
 
 
-def swap_text(text, param: str):
-    result = ''
-    for word in text.split():
+def text_to_lines(text: str):
+    lines = text.split('\n')
+    return [line + '\n' for line in lines][:-1]
+
+
+def swap_words(line: str, param: str):
+    new_line = ''
+    for word in line.split():
+        last_char = ''
+        if word[-1] in punctuation:
+            last_char = word[-1]
+            word = word[:-1]
+        all_words = requests.get(urls[param].format(word=word.lower())).json()
+        if len(all_words) > 0:
+            chosen_word = choice(all_words)['word']
+        else:
+            new_line += word
+            continue
+        if word[0].isupper():
+            chosen_word = chosen_word.capitalize()
+        chosen_word += last_char
+        new_line += chosen_word + ' '
+    return new_line.rstrip() + '\n'
+
+
+def swap_text(text: list, param: str):
+    result = []
+    for line in text:
+        new_line = swap_words(line, param)
+        result.append(new_line)
+    return result
+
+
+def add_words(line: str, param: str):
+    new_line = ''
+    for word in line.split():
         all_words = requests.get(urls[param].format(word=word)).json()
         if len(all_words) > 0:
-            chosen_word = all_words[0]['word']
-            result += chosen_word
+            chosen_word = choice(all_words)['word']
         else:
-            result += word
-        result += ' '
-    return result.rstrip()
+            new_line += word
+            continue
+        if word[0].isupper():
+            chosen_word = chosen_word.capitalize()
+            word = word.lower()
+        new_line += chosen_word + ' ' + word
+    return new_line.rstrip() + '\n'
 
 
-def add_text(text, param: str):
-    result = ''
-    for word in text.split():
-        all_adjectives = requests.get(urls[param].format(word=word)).json()
-        if len(all_adjectives) > 0:
-            adjective = all_adjectives[0]['word']
-            result += adjective + ' ' + word
-        else:
-            result += word
-        result += ' '
-    return result.rstrip()
+def add_text(text: list, param: str):
+    result = []
+    for line in text:
+        new_line = add_words(line, param)
+        result.append(new_line)
+    return result
 
 
 def swap_rhymes(text):

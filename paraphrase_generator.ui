@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>870</width>
-    <height>528</height>
+    <width>1081</width>
+    <height>747</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Pharaphrase generator</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -25,7 +25,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
-        <widget class="QLabel" name="songMainTitle">
+        <widget class="QLabel" name="searchTableLabel">
          <property name="font">
           <font>
            <weight>75</weight>
@@ -33,86 +33,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Search for a song</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="songTitleLabel">
-         <property name="text">
-          <string>Enter title:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="titleInput"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="songArtistLabel">
-         <property name="text">
-          <string>Enter artist:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="artistInput"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="searchButton">
-         <property name="text">
-          <string>Search</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="testOutputTitle">
-         <property name="text">
-          <string>test title</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="testOutputArtist">
-         <property name="text">
-          <string>test artist</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWidget" name="widget_2" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QLabel" name="poemTitleLabel">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Search for a poem</string>
+          <string>Search for a song or a poem to paraphrase</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -120,39 +41,102 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="chooseArtist">
-         <property name="text">
-          <string>Choose an artist</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QListWidget" name="artistList"/>
-       </item>
-       <item>
-        <widget class="QStackedWidget" name="stack">
+        <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
-         <widget class="QWidget" name="page">
-          <layout class="QVBoxLayout" name="verticalLayout_5">
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>Song</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
-            <widget class="QLabel" name="stackLabel">
+            <widget class="QLabel" name="songTitleLabel">
              <property name="text">
-              <string>Choose Artist First</string>
+              <string>Enter title:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="titleInput"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="songArtistLabel">
+             <property name="text">
+              <string>Enter artist:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="artistInput"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="searchButton">
+             <property name="text">
+              <string>Search</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="resultsLabel">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="foundTitle">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="foundArtist">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>Poem</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QLabel" name="chooseAuthor">
+             <property name="text">
+              <string>Choose an author</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="page_2">
-          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QListWidget" name="artistList"/>
+           </item>
            <item>
             <widget class="QLabel" name="choosePoem">
              <property name="text">
@@ -164,7 +148,32 @@
             </widget>
            </item>
            <item>
-            <widget class="QListWidget" name="titleList"/>
+            <widget class="QStackedWidget" name="stack">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="page">
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <item>
+                <widget class="QLabel" name="stackLabel">
+                 <property name="text">
+                  <string>Choose Author First</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="page_2">
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="QListWidget" name="titleList"/>
+               </item>
+              </layout>
+             </widget>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -190,6 +199,12 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
           <string>Enter text to paraphrase</string>
          </property>
@@ -201,12 +216,6 @@
        <item>
         <widget class="QTextEdit" name="inputText"/>
        </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWidget" name="widget_4" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QLabel" name="chooseOperation">
          <property name="sizePolicy">
@@ -214,6 +223,12 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
          </property>
          <property name="text">
           <string>Choose Operation</string>
@@ -250,6 +265,28 @@
          </layout>
         </widget>
        </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_4" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="paraphrasedTextLabel">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Paraphrased text</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QTextBrowser" name="outputText"/>
        </item>
@@ -263,7 +300,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>870</width>
+     <width>1081</width>
      <height>20</height>
     </rect>
    </property>

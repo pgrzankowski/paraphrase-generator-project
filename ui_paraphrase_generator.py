@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(870, 528)
+        MainWindow.resize(1081, 747)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
@@ -31,82 +31,90 @@ class Ui_MainWindow(object):
         self.widget_1.setSizePolicy(sizePolicy)
         self.verticalLayout_7 = QVBoxLayout(self.widget_1)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.songMainTitle = QLabel(self.widget_1)
-        self.songMainTitle.setObjectName(u"songMainTitle")
+        self.searchTableLabel = QLabel(self.widget_1)
+        self.searchTableLabel.setObjectName(u"searchTableLabel")
         font = QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.songMainTitle.setFont(font)
-        self.songMainTitle.setAlignment(Qt.AlignCenter)
-        self.songMainTitle.setWordWrap(True)
+        self.searchTableLabel.setFont(font)
+        self.searchTableLabel.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_7.addWidget(self.songMainTitle)
+        self.verticalLayout_7.addWidget(self.searchTableLabel)
 
-        self.songTitleLabel = QLabel(self.widget_1)
+        self.tabWidget = QTabWidget(self.widget_1)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.verticalLayout_8 = QVBoxLayout(self.tab)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.songTitleLabel = QLabel(self.tab)
         self.songTitleLabel.setObjectName(u"songTitleLabel")
 
-        self.verticalLayout_7.addWidget(self.songTitleLabel)
+        self.verticalLayout_8.addWidget(self.songTitleLabel)
 
-        self.titleInput = QLineEdit(self.widget_1)
+        self.titleInput = QLineEdit(self.tab)
         self.titleInput.setObjectName(u"titleInput")
 
-        self.verticalLayout_7.addWidget(self.titleInput)
+        self.verticalLayout_8.addWidget(self.titleInput)
 
-        self.songArtistLabel = QLabel(self.widget_1)
+        self.songArtistLabel = QLabel(self.tab)
         self.songArtistLabel.setObjectName(u"songArtistLabel")
 
-        self.verticalLayout_7.addWidget(self.songArtistLabel)
+        self.verticalLayout_8.addWidget(self.songArtistLabel)
 
-        self.artistInput = QLineEdit(self.widget_1)
+        self.artistInput = QLineEdit(self.tab)
         self.artistInput.setObjectName(u"artistInput")
 
-        self.verticalLayout_7.addWidget(self.artistInput)
+        self.verticalLayout_8.addWidget(self.artistInput)
 
-        self.searchButton = QPushButton(self.widget_1)
+        self.searchButton = QPushButton(self.tab)
         self.searchButton.setObjectName(u"searchButton")
 
-        self.verticalLayout_7.addWidget(self.searchButton)
+        self.verticalLayout_8.addWidget(self.searchButton)
 
-        self.testOutputTitle = QLabel(self.widget_1)
-        self.testOutputTitle.setObjectName(u"testOutputTitle")
+        self.resultsLabel = QLabel(self.tab)
+        self.resultsLabel.setObjectName(u"resultsLabel")
+        self.resultsLabel.setFont(font)
 
-        self.verticalLayout_7.addWidget(self.testOutputTitle)
+        self.verticalLayout_8.addWidget(self.resultsLabel)
 
-        self.testOutputArtist = QLabel(self.widget_1)
-        self.testOutputArtist.setObjectName(u"testOutputArtist")
+        self.foundTitle = QLabel(self.tab)
+        self.foundTitle.setObjectName(u"foundTitle")
 
-        self.verticalLayout_7.addWidget(self.testOutputArtist)
+        self.verticalLayout_8.addWidget(self.foundTitle)
+
+        self.foundArtist = QLabel(self.tab)
+        self.foundArtist.setObjectName(u"foundArtist")
+
+        self.verticalLayout_8.addWidget(self.foundArtist)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_7.addItem(self.verticalSpacer)
+        self.verticalLayout_8.addItem(self.verticalSpacer)
 
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QWidget()
+        self.tab_2.setObjectName(u"tab_2")
+        self.verticalLayout_9 = QVBoxLayout(self.tab_2)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.chooseAuthor = QLabel(self.tab_2)
+        self.chooseAuthor.setObjectName(u"chooseAuthor")
+        self.chooseAuthor.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout.addWidget(self.widget_1)
+        self.verticalLayout_9.addWidget(self.chooseAuthor)
 
-        self.widget_2 = QWidget(self.centralwidget)
-        self.widget_2.setObjectName(u"widget_2")
-        self.verticalLayout_4 = QVBoxLayout(self.widget_2)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.poemTitleLabel = QLabel(self.widget_2)
-        self.poemTitleLabel.setObjectName(u"poemTitleLabel")
-        self.poemTitleLabel.setFont(font)
-        self.poemTitleLabel.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_4.addWidget(self.poemTitleLabel)
-
-        self.chooseArtist = QLabel(self.widget_2)
-        self.chooseArtist.setObjectName(u"chooseArtist")
-        self.chooseArtist.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_4.addWidget(self.chooseArtist)
-
-        self.artistList = QListWidget(self.widget_2)
+        self.artistList = QListWidget(self.tab_2)
         self.artistList.setObjectName(u"artistList")
 
-        self.verticalLayout_4.addWidget(self.artistList)
+        self.verticalLayout_9.addWidget(self.artistList)
 
-        self.stack = QStackedWidget(self.widget_2)
+        self.choosePoem = QLabel(self.tab_2)
+        self.choosePoem.setObjectName(u"choosePoem")
+        self.choosePoem.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_9.addWidget(self.choosePoem)
+
+        self.stack = QStackedWidget(self.tab_2)
         self.stack.setObjectName(u"stack")
         self.page = QWidget()
         self.page.setObjectName(u"page")
@@ -123,12 +131,6 @@ class Ui_MainWindow(object):
         self.page_2.setObjectName(u"page_2")
         self.verticalLayout_6 = QVBoxLayout(self.page_2)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.choosePoem = QLabel(self.page_2)
-        self.choosePoem.setObjectName(u"choosePoem")
-        self.choosePoem.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_6.addWidget(self.choosePoem)
-
         self.titleList = QListWidget(self.page_2)
         self.titleList.setObjectName(u"titleList")
 
@@ -136,10 +138,14 @@ class Ui_MainWindow(object):
 
         self.stack.addWidget(self.page_2)
 
-        self.verticalLayout_4.addWidget(self.stack)
+        self.verticalLayout_9.addWidget(self.stack)
+
+        self.tabWidget.addTab(self.tab_2, "")
+
+        self.verticalLayout_7.addWidget(self.tabWidget)
 
 
-        self.horizontalLayout.addWidget(self.widget_2)
+        self.horizontalLayout.addWidget(self.widget_1)
 
         self.widget_3 = QWidget(self.centralwidget)
         self.widget_3.setObjectName(u"widget_3")
@@ -157,6 +163,7 @@ class Ui_MainWindow(object):
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.enterText.sizePolicy().hasHeightForWidth())
         self.enterText.setSizePolicy(sizePolicy2)
+        self.enterText.setFont(font)
         self.enterText.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_2.addWidget(self.enterText)
@@ -166,22 +173,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.inputText)
 
-
-        self.horizontalLayout.addWidget(self.widget_3)
-
-        self.widget_4 = QWidget(self.centralwidget)
-        self.widget_4.setObjectName(u"widget_4")
-        self.verticalLayout = QVBoxLayout(self.widget_4)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.chooseOperation = QLabel(self.widget_4)
+        self.chooseOperation = QLabel(self.widget_3)
         self.chooseOperation.setObjectName(u"chooseOperation")
         sizePolicy2.setHeightForWidth(self.chooseOperation.sizePolicy().hasHeightForWidth())
         self.chooseOperation.setSizePolicy(sizePolicy2)
+        self.chooseOperation.setFont(font)
         self.chooseOperation.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout.addWidget(self.chooseOperation)
+        self.verticalLayout_2.addWidget(self.chooseOperation)
 
-        self.widget = QWidget(self.widget_4)
+        self.widget = QWidget(self.widget_3)
         self.widget.setObjectName(u"widget")
         self.verticalLayout_3 = QVBoxLayout(self.widget)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
@@ -201,7 +202,21 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.addAdjectives)
 
 
-        self.verticalLayout.addWidget(self.widget)
+        self.verticalLayout_2.addWidget(self.widget)
+
+
+        self.horizontalLayout.addWidget(self.widget_3)
+
+        self.widget_4 = QWidget(self.centralwidget)
+        self.widget_4.setObjectName(u"widget_4")
+        self.verticalLayout = QVBoxLayout(self.widget_4)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.paraphrasedTextLabel = QLabel(self.widget_4)
+        self.paraphrasedTextLabel.setObjectName(u"paraphrasedTextLabel")
+        self.paraphrasedTextLabel.setFont(font)
+        self.paraphrasedTextLabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.paraphrasedTextLabel)
 
         self.outputText = QTextBrowser(self.widget_4)
         self.outputText.setObjectName(u"outputText")
@@ -214,7 +229,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 870, 20))
+        self.menubar.setGeometry(QRect(0, 0, 1081, 20))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -222,28 +237,32 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stack.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
+        self.stack.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.songMainTitle.setText(QCoreApplication.translate("MainWindow", u"Search for a song", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Pharaphrase generator", None))
+        self.searchTableLabel.setText(QCoreApplication.translate("MainWindow", u"Search for a song or a poem to paraphrase", None))
         self.songTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Enter title:", None))
         self.songArtistLabel.setText(QCoreApplication.translate("MainWindow", u"Enter artist:", None))
         self.searchButton.setText(QCoreApplication.translate("MainWindow", u"Search", None))
-        self.testOutputTitle.setText(QCoreApplication.translate("MainWindow", u"test title", None))
-        self.testOutputArtist.setText(QCoreApplication.translate("MainWindow", u"test artist", None))
-        self.poemTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Search for a poem", None))
-        self.chooseArtist.setText(QCoreApplication.translate("MainWindow", u"Choose an artist", None))
-        self.stackLabel.setText(QCoreApplication.translate("MainWindow", u"Choose Artist First", None))
+        self.resultsLabel.setText("")
+        self.foundTitle.setText("")
+        self.foundArtist.setText("")
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Song", None))
+        self.chooseAuthor.setText(QCoreApplication.translate("MainWindow", u"Choose an author", None))
         self.choosePoem.setText(QCoreApplication.translate("MainWindow", u"Choose a poem", None))
+        self.stackLabel.setText(QCoreApplication.translate("MainWindow", u"Choose Author First", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Poem", None))
         self.enterText.setText(QCoreApplication.translate("MainWindow", u"Enter text to paraphrase", None))
         self.chooseOperation.setText(QCoreApplication.translate("MainWindow", u"Choose Operation", None))
         self.swapRhymes.setText(QCoreApplication.translate("MainWindow", u"Swap rhymes", None))
         self.swapSynonyms.setText(QCoreApplication.translate("MainWindow", u"Swap Synonyms", None))
         self.addAdjectives.setText(QCoreApplication.translate("MainWindow", u"Add adjectives", None))
+        self.paraphrasedTextLabel.setText(QCoreApplication.translate("MainWindow", u"Paraphrased text", None))
     # retranslateUi
 

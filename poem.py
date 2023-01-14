@@ -8,6 +8,10 @@ urls = {
 
 
 def get_authors():
+    """
+    Retrives list of authors and returns a list
+    of objects based on them.
+    """
     all_authors = requests.get(urls['authors']).json()
     return [Author(author_name) for author_name in all_authors['authors']]
 
@@ -23,6 +27,9 @@ class Author:
         self._name = name
 
     def __str__(self):
+        """
+        Returns name of the author.
+        """
         return self._name
 
     def name(self):
@@ -32,16 +39,19 @@ class Author:
         return self._name
 
     def titles(self):
-        all_titles = requests.get(
+        """
+        Returns list of authors' poems.
+        """
+        all_poems = requests.get(
             urls['titles'].format(author=self._name)
             ).json()
-        titles = []
-        for title in all_titles:
-            titles.append(Title(self, title['title']))
-        return titles
+        poems = []
+        for poem in all_poems:
+            poems.append(Poem(self, poem['title']))
+        return poems
 
 
-class Title:
+class Poem:
     def __init__(self, author, title):
         self._author = author
         self._title = title
@@ -50,12 +60,21 @@ class Title:
         return self._title
 
     def author(self):
+        """
+        Returns Author object of self.
+        """
         return self._author
 
     def title(self):
+        """
+        Returns title of a poem.
+        """
         return self._title
 
     def text(self):
+        """
+        Retrives text of a poem from API and returns it.
+        """
         author = self._author.name()
         title = self._title
         text_item = requests.get(urls['poem'].format(
@@ -65,5 +84,5 @@ class Title:
         lines = text_item[0]['lines']
         text = ''
         for line in lines:
-            text += line + '\n'
+            text += line.strip() + '\n'
         return text
