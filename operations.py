@@ -1,33 +1,47 @@
 import requests
+import json
 from string import punctuation
 from random import choice
 
-urls = {
-    'rhymes': 'https://api.datamuse.com/words?rel_rhy={word}',
-    'synonyms': 'https://api.datamuse.com/words?ml={word}',
-    'adjectives': 'https://api.datamuse.com/words?rel_jjb={word}'
-}
+
+with open('paraphrase_endpoints.json', 'r') as file:
+    urls = json.load(file)
 
 
-def lines_to_text(lines: list):
+def lines_to_text(lines: list) -> str:
+    """
+    Transforms list of strings into string and returns it.
+    """
     text = ''
     for line in lines:
         text += line
     return text
 
 
-def text_to_lines(text: str):
+def text_to_lines(text: str) -> list:
+    """
+    Transforms string separeted with '\n' into list
+    of strings and retruns that list.
+    """
     lines = text.split('\n')
     return [line + '\n' for line in lines][:-1]
 
 
-def get_paraphrase(word: str, param: str):
+def get_paraphrase(word: str, param: str) -> str:
+    """
+    Gets random paraphrase of the chosen type
+    (rhyme, synonym, etc.) and returns it.
+    """
     all_paraphrases = requests.get(urls[param].format(word=word)).json()
     chosen_paraphrase = choice(all_paraphrases)['word']
     return chosen_paraphrase
 
 
-def swap_word(sentance: str, keywords: dict):
+def swap_word(sentance: str, keywords: dict) -> str:
+    """
+    Replaces keywords with their paraphrases and
+    returns new string created that way.
+    """
     result = ''
     for word in sentance.split():
         first_char = word[0]
@@ -48,7 +62,11 @@ def swap_word(sentance: str, keywords: dict):
     return result.rstrip() + '\n'
 
 
-def add_word(sentance: str, keywords: dict):
+def add_word(sentance: str, keywords: dict) -> str:
+    """
+    Adds additional words before keywords with and
+    returns new string created that way.
+    """
     result = ''
     for word in sentance.split():
         first_char = word[0]
@@ -68,7 +86,11 @@ def add_word(sentance: str, keywords: dict):
     return result.rstrip() + '\n'
 
 
-def perform_operation(text_lines: list, keywords: list, param: str, operation):
+def perform_operation(text_lines: list, keywords: list, param: str, operation) -> str:
+    """
+    Performs chosen operation on list of strings (text_lines)
+    and returns it as one string.
+    """
     result = []
     assigned_keywords = {}
     for keyword in keywords:
@@ -81,16 +103,46 @@ def perform_operation(text_lines: list, keywords: list, param: str, operation):
     return lines_to_text(result)
 
 
-def swap_rhymes(input_text: str, keywords: list):
+def swap_rhymes(input_text: str, keywords: list) -> str:
+    """
+    Swaps keywords in given text to their rhymes
+    and return result.
+    """
     text_lines = text_to_lines(input_text)
     return perform_operation(text_lines, keywords, 'rhymes', swap_word)
 
 
-def swap_synonyms(input_text: str, keywords: list):
+def swap_synonyms(input_text: str, keywords: list) -> str:
+    """
+    Swaps keywords in given text to their synonyms
+    and return result.
+    """
     text_lines = text_to_lines(input_text)
     return perform_operation(text_lines, keywords, 'synonyms', swap_word)
 
 
-def add_adjectives(input_text: str, keywords: list):
+def swap_homophones(input_text: str, keywords: list) -> str:
+    """
+    Swap keywords in given text to their homophones
+    and return result.
+    """
+    text_lines = text_to_lines(input_text)
+    return perform_operation(text_lines, keywords, 'homophones', swap_word)
+
+
+def swap_homonyms(input_text: str, keywords: list) -> str:
+    """
+    Swap keywords in given text to their homonyms
+    and return result.
+    """
+    text_lines = text_to_lines(input_text)
+    return perform_operation(text_lines, keywords, 'homonyms', swap_word)
+
+
+def add_adjectives(input_text: str, keywords: list) -> str:
+    """
+    Adds adjectives before keywords in given text
+    and return result.
+    """
     text_lines = text_to_lines(input_text)
     return perform_operation(text_lines, keywords, 'adjectives', add_word)

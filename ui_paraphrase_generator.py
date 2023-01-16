@@ -241,6 +241,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.swapSynonyms)
 
+        self.swapHomophones = QPushButton(self.widget)
+        self.swapHomophones.setObjectName(u"swapHomophones")
+
+        self.verticalLayout_3.addWidget(self.swapHomophones)
+
+        self.swapHomonyms = QPushButton(self.widget)
+        self.swapHomonyms.setObjectName(u"swapHomonyms")
+
+        self.verticalLayout_3.addWidget(self.swapHomonyms)
+
         self.addAdjectives = QPushButton(self.widget)
         self.addAdjectives.setObjectName(u"addAdjectives")
 
@@ -310,11 +320,13 @@ class Ui_MainWindow(object):
         self.inputKeyword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter word...", None))
         self.addKeyword.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.clearKeywords.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
-        self.selectedKeywordsLabel.setText(QCoreApplication.translate("MainWindow", u"Selected keywords:", None))
+        self.selectedKeywordsLabel.setText(QCoreApplication.translate("MainWindow", u"Selected keywords (max 5):", None))
         self.keywordsList.setText("")
         self.chooseOperation.setText(QCoreApplication.translate("MainWindow", u"Choose Operation", None))
         self.swapRhymes.setText(QCoreApplication.translate("MainWindow", u"Swap rhymes", None))
-        self.swapSynonyms.setText(QCoreApplication.translate("MainWindow", u"Swap Synonyms", None))
+        self.swapSynonyms.setText(QCoreApplication.translate("MainWindow", u"Swap synonyms", None))
+        self.swapHomophones.setText(QCoreApplication.translate("MainWindow", u"Swap homophones", None))
+        self.swapHomonyms.setText(QCoreApplication.translate("MainWindow", u"Swap homonyms", None))
         self.addAdjectives.setText(QCoreApplication.translate("MainWindow", u"Add adjectives", None))
         self.paraphrasedTextLabel.setText(QCoreApplication.translate("MainWindow", u"Paraphrased text", None))
     # retranslateUi

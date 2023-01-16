@@ -288,7 +288,7 @@
        <item>
         <widget class="QLabel" name="selectedKeywordsLabel">
          <property name="text">
-          <string>Selected keywords:</string>
+          <string>Selected keywords (max 5):</string>
          </property>
         </widget>
        </item>
@@ -334,7 +334,21 @@
           <item>
            <widget class="QPushButton" name="swapSynonyms">
             <property name="text">
-             <string>Swap Synonyms</string>
+             <string>Swap synonyms</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="swapHomophones">
+            <property name="text">
+             <string>Swap homophones</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="swapHomonyms">
+            <property name="text">
+             <string>Swap homonyms</string>
             </property>
            </widget>
           </item>

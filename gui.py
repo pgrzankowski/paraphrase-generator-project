@@ -4,7 +4,13 @@ from PySide2.QtWidgets import QListWidgetItem
 import sys
 
 from ui_paraphrase_generator import Ui_MainWindow
-from operations import swap_synonyms, swap_rhymes, add_adjectives
+from operations import (
+    swap_synonyms,
+    swap_rhymes,
+    swap_homophones,
+    swap_homonyms,
+    add_adjectives
+)
 from poem import get_authors
 from song import get_song
 from requests import Timeout
@@ -29,6 +35,8 @@ class ParaphraseGeneratorWindow(QMainWindow):
         """
         self.ui.swapRhymes.clicked.connect(self._swapRhymes)
         self.ui.swapSynonyms.clicked.connect(self._swapSynonyms)
+        self.ui.swapHomophones.clicked.connect(self._swapHomophones)
+        self.ui.swapHomonyms.clicked.connect(self._swapHomonyms)
         self.ui.addAdjectives.clicked.connect(self._addAdjectives)
 
     def _swapRhymes(self):
@@ -46,6 +54,22 @@ class ParaphraseGeneratorWindow(QMainWindow):
         """
         input_text, keyword = self._getInputData()
         self.ui.outputText.setText(swap_synonyms(input_text, keyword))
+
+    def _swapHomophones(self):
+        """
+        Writes out output after its transformed with
+        swap_homnophones function.
+        """
+        input_text, keyword = self._getInputData()
+        self.ui.outputText.setText(swap_homophones(input_text, keyword))
+
+    def _swapHomonyms(self):
+        """
+        Writes out output after its transformed with
+        swap_homophones function.
+        """
+        input_text, keyword = self._getInputData()
+        self.ui.outputText.setText(swap_homonyms(input_text, keyword))
 
     def _addAdjectives(self):
         """
@@ -70,7 +94,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
         self.ui.keywordsList.clear()
 
     def _addKeyword(self):
-        new_keyword = self.ui.inputKeyword.text().lower()
+        new_keyword = self.ui.inputKeyword.text().lower().strip()
         keywords = self.keywords
         if new_keyword and len(keywords) < 5 and new_keyword not in keywords:
             self.keywords.append(new_keyword)
@@ -113,9 +137,9 @@ class ParaphraseGeneratorWindow(QMainWindow):
         """
         Calls _clearInput method.
         """
-        self.ui.tabWidget.currentChanged.connect(self._clearInput)
+        self.ui.tabWidget.currentChanged.connect(self._clearTexts)
 
-    def _clearInput(self):
+    def _clearTexts(self):
         """
         Clears input PlainText widget and search results
         in song tab.
@@ -124,6 +148,9 @@ class ParaphraseGeneratorWindow(QMainWindow):
         self.ui.resultsLabel.clear()
         self.ui.foundArtist.clear()
         self.ui.foundTitle.clear()
+        self.ui.outputText.clear()
+        self.ui.titleInput.clear()
+        self.ui.artistInput.clear()
 
     def _setupSearchDetails(self):
         """
