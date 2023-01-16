@@ -10,7 +10,7 @@ from operations import (
 )
 from poem import get_authors
 from song import get_song
-from requests import Timeout
+from requests import Timeout, ConnectionError
 import sys
 
 
@@ -176,7 +176,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
         Method which searches for a song from given title and artist
         and writes out lyrics of song found in database into
         inputPlainText widget.
-        If not found writes out error message.
+        If not found, or couldn't connect writes out error message.
         """
         title = self.ui.titleInput.text()
         artist = self.ui.artistInput.text()
@@ -189,7 +189,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
         except AttributeError:
             message = 'Song not found'
             self.ui.inputText.setPlainText(message)
-        except Timeout:
+        except (Timeout, ConnectionError):
             message = 'Couldn\'t connect to database\nPlease try again'
             self.ui.inputText.setPlainText(message)
 
