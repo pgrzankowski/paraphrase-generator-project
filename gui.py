@@ -4,8 +4,7 @@ from PySide2.QtWidgets import QListWidgetItem
 import sys
 
 from ui_paraphrase_generator import Ui_MainWindow
-from operations import swap_text, add_text, swap_words
-from operations import text_to_lines, lines_to_text
+from operations import swap_synonyms, swap_rhymes, add_adjectives
 from poem import get_authors
 from song import get_song
 from requests import Timeout
@@ -20,6 +19,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
         self._setupOperations()
         self._setupSearchDetails()
         self._setupTabBar()
+        self._setupKeywords()
         self.ui.stack.setCurrentIndex(0)
         self.ui.tabWidget.setCurrentIndex(0)
 
@@ -31,31 +31,51 @@ class ParaphraseGeneratorWindow(QMainWindow):
         self.ui.swapSynonyms.clicked.connect(self._swapSynonyms)
         self.ui.addAdjectives.clicked.connect(self._addAdjectives)
 
-# TODO
-# Fix 3 methods below, somehow improve time needed to execute
     def _swapRhymes(self):
         """
         Writes out output after its transformed with
         swap_rhymes function.
         """
-        input_text = self.ui.inputText.toPlainText()
-        self.ui.outputText.setText(swap_text(input_text, 'rhymes'))
+        input_text, keyword = self._getInputData()
+        self.ui.outputText.setText(swap_rhymes(input_text, keyword))
 
     def _swapSynonyms(self):
         """
         Writes out output after its transformed with
         swap_synonyms function.
         """
-        input_text = self.ui.inputText.toPlainText()
-        self.ui.outputText.setText(swap_text(input_text, 'synonyms'))
+        input_text, keyword = self._getInputData()
+        self.ui.outputText.setText(swap_synonyms(input_text, keyword))
 
     def _addAdjectives(self):
         """
         Writes out output after its transformed with
         add_adjectives function.
         """
+        input_text, keyword = self._getInputData()
+        self.ui.outputText.setText(add_adjectives(input_text, keyword))
+
+    def _getInputData(self):
         input_text = self.ui.inputText.toPlainText()
-        self.ui.outputText.setText(add_text(input_text, 'adjectives'))
+        keywords = self.keywords
+        return input_text, keywords
+
+    def _setupKeywords(self):
+        self.keywords = []
+        self.ui.addKeyword.clicked.connect(self._addKeyword)
+        self.ui.clearKeywords.clicked.connect(self._clearKeywords)
+
+    def _clearKeywords(self):
+        self.keywords = []
+        self.ui.keywordsList.clear()
+
+    def _addKeyword(self):
+        new_keyword = self.ui.inputKeyword.text().lower()
+        keywords = self.keywords
+        if new_keyword and len(keywords) < 5 and new_keyword not in keywords:
+            self.keywords.append(new_keyword)
+            self.ui.keywordsList.setText((', '.join(keywords).lstrip(', ')))
+            self.ui.inputKeyword.clear()
 
     def _setupAuthorList(self):
         """

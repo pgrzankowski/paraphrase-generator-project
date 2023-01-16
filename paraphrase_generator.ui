@@ -14,8 +14,8 @@
    <string>Pharaphrase generator</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <widget class="QWidget" name="widget_1" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -58,7 +58,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="titleInput"/>
+            <widget class="QLineEdit" name="titleInput">
+             <property name="placeholderText">
+              <string>Enter title...</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="songArtistLabel">
@@ -68,7 +72,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="artistInput"/>
+            <widget class="QLineEdit" name="artistInput">
+             <property name="placeholderText">
+              <string>Enter artist...</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="searchButton">
@@ -182,7 +190,7 @@
       </layout>
      </widget>
     </item>
-    <item>
+    <item row="0" column="1">
      <widget class="QWidget" name="widget_3" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
@@ -215,6 +223,81 @@
        </item>
        <item>
         <widget class="QTextEdit" name="inputText"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="keywordLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Select keywords to paraphrase</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignHCenter|Qt::AlignTop</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="inputKeyword">
+            <property name="placeholderText">
+             <string>Enter word...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addKeyword">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="clearKeywords">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="selectedKeywordsLabel">
+         <property name="text">
+          <string>Selected keywords:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="keywordsList">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="chooseOperation">
@@ -268,7 +351,7 @@
       </layout>
      </widget>
     </item>
-    <item>
+    <item row="0" column="2">
      <widget class="QWidget" name="widget_4" native="true">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>

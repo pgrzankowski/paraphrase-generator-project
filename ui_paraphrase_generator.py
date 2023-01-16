@@ -20,8 +20,8 @@ class Ui_MainWindow(object):
         MainWindow.resize(1081, 747)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.horizontalLayout = QHBoxLayout(self.centralwidget)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.gridLayout = QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName(u"gridLayout")
         self.widget_1 = QWidget(self.centralwidget)
         self.widget_1.setObjectName(u"widget_1")
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -145,7 +145,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.addWidget(self.tabWidget)
 
 
-        self.horizontalLayout.addWidget(self.widget_1)
+        self.gridLayout.addWidget(self.widget_1, 0, 0, 1, 1)
 
         self.widget_3 = QWidget(self.centralwidget)
         self.widget_3.setObjectName(u"widget_3")
@@ -172,6 +172,51 @@ class Ui_MainWindow(object):
         self.inputText.setObjectName(u"inputText")
 
         self.verticalLayout_2.addWidget(self.inputText)
+
+        self.keywordLabel = QLabel(self.widget_3)
+        self.keywordLabel.setObjectName(u"keywordLabel")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.keywordLabel.sizePolicy().hasHeightForWidth())
+        self.keywordLabel.setSizePolicy(sizePolicy3)
+        self.keywordLabel.setFont(font)
+        self.keywordLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_2.addWidget(self.keywordLabel)
+
+        self.widget_2 = QWidget(self.widget_3)
+        self.widget_2.setObjectName(u"widget_2")
+        self.horizontalLayout = QHBoxLayout(self.widget_2)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.inputKeyword = QLineEdit(self.widget_2)
+        self.inputKeyword.setObjectName(u"inputKeyword")
+
+        self.horizontalLayout.addWidget(self.inputKeyword)
+
+        self.addKeyword = QPushButton(self.widget_2)
+        self.addKeyword.setObjectName(u"addKeyword")
+
+        self.horizontalLayout.addWidget(self.addKeyword)
+
+        self.clearKeywords = QPushButton(self.widget_2)
+        self.clearKeywords.setObjectName(u"clearKeywords")
+
+        self.horizontalLayout.addWidget(self.clearKeywords)
+
+
+        self.verticalLayout_2.addWidget(self.widget_2)
+
+        self.selectedKeywordsLabel = QLabel(self.widget_3)
+        self.selectedKeywordsLabel.setObjectName(u"selectedKeywordsLabel")
+
+        self.verticalLayout_2.addWidget(self.selectedKeywordsLabel)
+
+        self.keywordsList = QLabel(self.widget_3)
+        self.keywordsList.setObjectName(u"keywordsList")
+
+        self.verticalLayout_2.addWidget(self.keywordsList)
 
         self.chooseOperation = QLabel(self.widget_3)
         self.chooseOperation.setObjectName(u"chooseOperation")
@@ -205,7 +250,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.widget)
 
 
-        self.horizontalLayout.addWidget(self.widget_3)
+        self.gridLayout.addWidget(self.widget_3, 0, 1, 1, 1)
 
         self.widget_4 = QWidget(self.centralwidget)
         self.widget_4.setObjectName(u"widget_4")
@@ -224,7 +269,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.outputText)
 
 
-        self.horizontalLayout.addWidget(self.widget_4)
+        self.gridLayout.addWidget(self.widget_4, 0, 2, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -248,7 +293,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Pharaphrase generator", None))
         self.searchTableLabel.setText(QCoreApplication.translate("MainWindow", u"Search for a song or a poem to paraphrase", None))
         self.songTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Enter title:", None))
+        self.titleInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter title...", None))
         self.songArtistLabel.setText(QCoreApplication.translate("MainWindow", u"Enter artist:", None))
+        self.artistInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter artist...", None))
         self.searchButton.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.resultsLabel.setText("")
         self.foundTitle.setText("")
@@ -259,6 +306,12 @@ class Ui_MainWindow(object):
         self.stackLabel.setText(QCoreApplication.translate("MainWindow", u"Choose Author First", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Poem", None))
         self.enterText.setText(QCoreApplication.translate("MainWindow", u"Enter text to paraphrase", None))
+        self.keywordLabel.setText(QCoreApplication.translate("MainWindow", u"Select keywords to paraphrase", None))
+        self.inputKeyword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter word...", None))
+        self.addKeyword.setText(QCoreApplication.translate("MainWindow", u"Add", None))
+        self.clearKeywords.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
+        self.selectedKeywordsLabel.setText(QCoreApplication.translate("MainWindow", u"Selected keywords:", None))
+        self.keywordsList.setText("")
         self.chooseOperation.setText(QCoreApplication.translate("MainWindow", u"Choose Operation", None))
         self.swapRhymes.setText(QCoreApplication.translate("MainWindow", u"Swap rhymes", None))
         self.swapSynonyms.setText(QCoreApplication.translate("MainWindow", u"Swap Synonyms", None))
