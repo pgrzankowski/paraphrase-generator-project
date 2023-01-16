@@ -1,8 +1,5 @@
 from PySide2.QtWidgets import QApplication, QMainWindow
 from PySide2.QtWidgets import QListWidgetItem
-
-import sys
-
 from ui_paraphrase_generator import Ui_MainWindow
 from operations import (
     swap_synonyms,
@@ -14,6 +11,7 @@ from operations import (
 from poem import get_authors
 from song import get_song
 from requests import Timeout
+import sys
 
 
 class ParaphraseGeneratorWindow(QMainWindow):
@@ -31,7 +29,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
 
     def _setupOperations(self):
         """
-        Assigns operations to given buttons.
+        Method wich assigns operations to given buttons.
         """
         self.ui.swapRhymes.clicked.connect(self._swapRhymes)
         self.ui.swapSynonyms.clicked.connect(self._swapSynonyms)
@@ -41,59 +39,73 @@ class ParaphraseGeneratorWindow(QMainWindow):
 
     def _swapRhymes(self):
         """
-        Writes out output after its transformed with
-        swap_rhymes function.
+        Method which swaps given keywords in text for their
+        rhymes and writes it out as output.
         """
         input_text, keyword = self._getInputData()
         self.ui.outputText.setText(swap_rhymes(input_text, keyword))
 
     def _swapSynonyms(self):
         """
-        Writes out output after its transformed with
-        swap_synonyms function.
+        Method which swaps given keywords in text for their
+        synonyms and writes it out as output.
         """
         input_text, keyword = self._getInputData()
         self.ui.outputText.setText(swap_synonyms(input_text, keyword))
 
     def _swapHomophones(self):
         """
-        Writes out output after its transformed with
-        swap_homnophones function.
+        Method which swaps given keywords in text for their
+        homophones(words which sound alike) and writes it out as output.
         """
         input_text, keyword = self._getInputData()
         self.ui.outputText.setText(swap_homophones(input_text, keyword))
 
     def _swapHomonyms(self):
         """
-        Writes out output after its transformed with
-        swap_homophones function.
+        Method which swaps given keywords in text for their
+        homonyms(words which are spelled alike) and writes it out as output.
         """
         input_text, keyword = self._getInputData()
         self.ui.outputText.setText(swap_homonyms(input_text, keyword))
 
     def _addAdjectives(self):
         """
-        Writes out output after its transformed with
-        add_adjectives function.
+        Method which adds adjectives before given keywords in text
+        and writes it out as output.
         """
         input_text, keyword = self._getInputData()
         self.ui.outputText.setText(add_adjectives(input_text, keyword))
 
     def _getInputData(self):
+        """
+        Method which retrives input data:
+        text to paraphrase and keywords
+        and returns them in tuple.
+        """
         input_text = self.ui.inputText.toPlainText()
         keywords = self.keywords
         return input_text, keywords
 
     def _setupKeywords(self):
+        """
+        Method which assigns operations to keyword buttons.
+        """
         self.keywords = []
         self.ui.addKeyword.clicked.connect(self._addKeyword)
         self.ui.clearKeywords.clicked.connect(self._clearKeywords)
 
     def _clearKeywords(self):
+        """
+        Method which clears keywords.
+        """
         self.keywords = []
         self.ui.keywordsList.clear()
 
     def _addKeyword(self):
+        """
+        Method which adds new keywords to the list.
+        """
         new_keyword = self.ui.inputKeyword.text().lower().strip()
         keywords = self.keywords
         if new_keyword and len(keywords) < 5 and new_keyword not in keywords:
@@ -103,7 +115,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
 
     def _setupAuthorList(self):
         """
-        Sets up list of authors in a QListWidget.
+        Method which sets up list of authors as a QListWidget.
         """
         authors = get_authors()
         for author in authors:
@@ -115,7 +127,8 @@ class ParaphraseGeneratorWindow(QMainWindow):
 
     def _selectAuthor(self, item):
         """
-        Sets up list of poems from selected author.
+        Method which sets up list of poems from selected author
+        as a QListWidget.
         """
         self.ui.stack.setCurrentIndex(1)
         titles = item.author.titles()
@@ -127,22 +140,22 @@ class ParaphraseGeneratorWindow(QMainWindow):
 
     def _selectTitle(self, item):
         """
-        Writes out chosen poem into an input
-        PlainText widget.
+        Method which writes out chosen poem into an
+        inputPlainText widget.
         """
         poem = item.title.text()
         self.ui.inputText.setPlainText(poem)
 
     def _setupTabBar(self):
         """
-        Calls _clearInput method.
+        Method which sets up TabBar.
         """
         self.ui.tabWidget.currentChanged.connect(self._clearTexts)
 
     def _clearTexts(self):
         """
-        Clears input PlainText widget and search results
-        in song tab.
+        Method which clears inputPlainText widget, search results
+        in song tab and outputPlainText widget.
         """
         self.ui.inputText.clear()
         self.ui.resultsLabel.clear()
@@ -154,15 +167,16 @@ class ParaphraseGeneratorWindow(QMainWindow):
 
     def _setupSearchDetails(self):
         """
-        Calls _searchForSong method.
+        Method which sets up song searching system.
         """
         self.ui.searchButton.clicked.connect(self._searchForSong)
 
     def _searchForSong(self):
         """
-        Searches for a song from given title and artist
-        and writes out lyrics of song found in database
-        into input PlainText widget.
+        Method which searches for a song from given title and artist
+        and writes out lyrics of song found in database into
+        inputPlainText widget.
+        If not found writes out error message.
         """
         title = self.ui.titleInput.text()
         artist = self.ui.artistInput.text()

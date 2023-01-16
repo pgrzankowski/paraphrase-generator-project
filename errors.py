@@ -1,0 +1,2 @@
+class TitleError(Exception):
+    pass

@@ -1,5 +1,6 @@
 import json
 from lyricsgenius import Genius
+from errors import TitleError
 
 
 def setup_genius():
@@ -29,20 +30,23 @@ def setup_genius():
     return genius
 
 
-def get_song(title, artist):
+def get_song(title, artist=''):
     """
     This method creates Song object based on title
     and artist parameters and returns it.
     """
-    genius = setup_genius()
-    song_data = genius.search_song(title, artist)
-    proper_title = song_data.title
-    proper_artist = song_data.artist
-    lyrics = song_data.lyrics
-    start_pos = lyrics.find(proper_title) + len(proper_title) + 8
-    end_pos = lyrics.find('You might also like')
-    lyrics = lyrics[start_pos:end_pos]
-    return Song(proper_title, proper_artist, lyrics)
+    if title:
+        genius = setup_genius()
+        song_data = genius.search_song(title, artist)
+        proper_title = song_data.title
+        proper_artist = song_data.artist
+        lyrics = song_data.lyrics
+        start_pos = lyrics.find(proper_title) + len(proper_title) + 8
+        end_pos = lyrics.find('You might also like')
+        lyrics = lyrics[start_pos:end_pos]
+        return Song(proper_title, proper_artist, lyrics)
+    else:
+        raise TitleError()
 
 
 class Song:

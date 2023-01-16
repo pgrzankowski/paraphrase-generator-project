@@ -1,10 +1,9 @@
 import requests
+import json
 
-urls = {
-    'authors': 'https://poetrydb.org/author',
-    'titles': 'https://poetrydb.org/author/{author}/title',
-    'poem': 'https://poetrydb.org/author,title/{author};{title}'
-}
+
+with open('poem_endpoints.json', 'r') as file:
+    urls = json.load(file)
 
 
 def get_authors():
@@ -27,20 +26,15 @@ class Author:
         self._name = name
 
     def __str__(self):
-        """
-        Returns name of the author.
-        """
         return self._name
 
+    @property
     def name(self):
-        """
-        Returns name of the author.
-        """
         return self._name
 
-    def titles(self):
+    def poems(self):
         """
-        Returns list of authors' poems.
+        Returns list of poems of an author.
         """
         all_poems = requests.get(
             urls['titles'].format(author=self._name)
@@ -52,6 +46,16 @@ class Author:
 
 
 class Poem:
+    """
+    Class which can be used to store poem
+    objects.
+
+    :param author: author of the poem
+    :type author: Author
+
+    :param title: title of the poem
+    :type title: str
+    """
     def __init__(self, author, title):
         self._author = author
         self._title = title
@@ -59,21 +63,17 @@ class Poem:
     def __str__(self):
         return self._title
 
+    @property
     def author(self):
-        """
-        Returns Author object of self.
-        """
         return self._author
 
+    @property
     def title(self):
-        """
-        Returns title of a poem.
-        """
         return self._title
 
     def text(self):
         """
-        Retrives text of a poem from API and returns it.
+        Retrives text of a poem from database and returns it.
         """
         author = self._author.name()
         title = self._title
