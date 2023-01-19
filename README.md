@@ -14,6 +14,7 @@ Cały projekt składa się z 5 głównych modułów:
 3.	operations.py – moduł ten zawiera funkcje do operacji na danych wejściowych, tzn.: na tekstach piosenek i wierszy. Funkcje pozwalają parafrazować wybrane słowa na ich odpowiedniki znalezione w bazie danych lub dodawać do nich przymiotniki opisujące je.
 4.	poem.py – moduł zawiera dwie klasy: Author i Poem. Pierwsza z nich służy do przechowywania autorów i pobierać listę wszystkich wierszy napisanych przez nich, znalezionych w bazie danych. Druga natomiast pozwala przechowywać same wiersze i pobierać ich teksty z bazy. Moduł posiada też funkcję do pobrania wszystkich autorów znalezionych w bazie.
 5.	song.py – moduł zawiera klasę, która pozwala przechowywać piosenki oraz funkcję służącą do wyszukiwania danego utworu w bazie danych geniusa.
+
 Poza opisanymi wyżej modułami do projektu należą również:
 - [ ]	errors.py – zawiera w sobie własne możliwe wyjątki (exceptions),
 - [ ]	testy do modułów opisanych w podpunktach: 3, 4, 5.
