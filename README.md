@@ -24,10 +24,10 @@ Można również przełączyć się na okno do wyszukiwania wierszy i wybrać ko
 
 Program pozwala użytkownikowi na sparafrazowanie podanego tekstu na jeden z pięciu sposobów:
 - [ ]	zamiana podanych słów na:
--- [ ]	rymy
--- [ ]	synonimy
--- [ ]	homofony
--- [ ]	homonimy
+    - [ ]	rymy
+    - [ ]	synonimy
+    - [ ]	homofony
+    - [ ]	homonimy
 - [ ]	dodanie do podanych słów dodatkowych czasowników
 
 Istnieje możliwość podania maksymalnie 10 słów do sparafrazowania. Zastosowałem ten górny margines, aby program działał stosunkowo szybko. Dla każdego z podanych słów kluczy jest pobierane, a następnie przypisywane mu, jedno wyrażenie. Słowa podane są następnie zamieniane lub dodawane są do nich pobrane wyrażenia. Po zakończonym procesie tekst wypisywany jest na wyjściu. Wszystkie funkcje, klasy i ich metody, są bardziej szczegółowy opis w postaci docstringów.
