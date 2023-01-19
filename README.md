@@ -3,9 +3,9 @@
 ## Cel projektu
 
 Celem projektu było stworzenie generatora parafraz wykorzystującego bazy API do mapowania słów na ich odpowiedniki lub też dodawanie przymiotników do słów już istniejących. Wykorzystuję w tym celu poniższe API:
-•	https://www.datamuse.com/api/
-•	https://poetrydb.org/index.html
-•	https://docs.genius.com/
+- [ ]   https://www.datamuse.com/api/
+- [ ]   https://poetrydb.org/index.html
+- [ ]	https://docs.genius.com/
 
 ## Układ projektu
 Cały projekt składa się z 5 głównych modułów:
@@ -15,20 +15,20 @@ Cały projekt składa się z 5 głównych modułów:
 4.	poem.py – moduł zawiera dwie klasy: Author i Poem. Pierwsza z nich służy do przechowywania autorów i pobierać listę wszystkich wierszy napisanych przez nich, znalezionych w bazie danych. Druga natomiast pozwala przechowywać same wiersze i pobierać ich teksty z bazy. Moduł posiada też funkcję do pobrania wszystkich autorów znalezionych w bazie.
 5.	song.py – moduł zawiera klasę, która pozwala przechowywać piosenki oraz funkcję służącą do wyszukiwania danego utworu w bazie danych geniusa.
 Poza opisanymi wyżej modułami do projektu należą również:
-•	errors.py – zawiera w sobie własne możliwe wyjątki (exceptions),
-•	testy do modułów opisanych w podpunktach: 3, 4, 5.
+- [ ]	errors.py – zawiera w sobie własne możliwe wyjątki (exceptions),
+- [ ]	testy do modułów opisanych w podpunktach: 3, 4, 5.
 
 ## Opis projektu
 Generator parafraz oferuje możliwość wyszukania tekstu piosenki w bazie tekstów Genius. Aby otrzymać teksty wystarczy podać tytuł piosenki, a dla większej dokładności również wykonawcę. Po wyszukaniu tekst piosenki automatycznie zostaje dodany jako tekst wejściowy. 
 Można również przełączyć się na okno do wyszukiwania wierszy i wybrać kolejno autora i jego dzieło, które po kliknięciu analogicznie zostanie dodane jako tekst wejściowy.
 
 Program pozwala użytkownikowi na sparafrazowanie podanego tekstu na jeden z pięciu sposobów:
-•	zamiana podanych słów na:
-o	rymy
-o	synonimy
-o	homofony
-o	homonimy
-•	dodanie do podanych słów dodatkowych czasowników
+- [ ]	zamiana podanych słów na:
+-- [ ]	rymy
+-- [ ]	synonimy
+-- [ ]	homofony
+-- [ ]	homonimy
+- [ ]	dodanie do podanych słów dodatkowych czasowników
 
 Istnieje możliwość podania maksymalnie 10 słów do sparafrazowania. Zastosowałem ten górny margines, aby program działał stosunkowo szybko. Dla każdego z podanych słów kluczy jest pobierane, a następnie przypisywane mu, jedno wyrażenie. Słowa podane są następnie zamieniane lub dodawane są do nich pobrane wyrażenia. Po zakończonym procesie tekst wypisywany jest na wyjściu. Wszystkie funkcje, klasy i ich metody, są bardziej szczegółowy opis w postaci docstringów.
 
