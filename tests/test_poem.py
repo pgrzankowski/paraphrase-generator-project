@@ -1,4 +1,4 @@
-from poem import Author, Poem, get_authors
+from paraphrase_generator.poem import Author, Poem, get_authors
 
 
 def test_create_author():
@@ -22,7 +22,7 @@ def test_author_titles():
 
 def test_get_authors():
     authors = get_authors()
-    assert authors[0].name() == 'Adam Lindsay Gordon'
+    assert authors[0].name == 'Adam Lindsay Gordon'
 
 
 def test_poem_text():

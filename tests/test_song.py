@@ -1,5 +1,5 @@
-from song import Song, get_song
-from errors import TitleError
+from paraphrase_generator.song import Song, get_song
+from paraphrase_generator.errors import TitleError
 import pytest
 
 
@@ -33,9 +33,9 @@ def test_get_song_no_artist():
 
 def test_get_song_no_title():
     with pytest.raises(TypeError):
-        song = get_song()
+        get_song()
 
 
 def test_get_song_blank_title():
     with pytest.raises(TitleError):
-        song = get_song('')
+        get_song('')

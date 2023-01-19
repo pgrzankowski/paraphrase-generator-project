@@ -215,6 +215,7 @@ class Ui_MainWindow(object):
 
         self.keywordsList = QLabel(self.widget_3)
         self.keywordsList.setObjectName(u"keywordsList")
+        self.keywordsList.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.keywordsList)
 
@@ -320,7 +321,7 @@ class Ui_MainWindow(object):
         self.inputKeyword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter word...", None))
         self.addKeyword.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.clearKeywords.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
-        self.selectedKeywordsLabel.setText(QCoreApplication.translate("MainWindow", u"Selected keywords (max 5):", None))
+        self.selectedKeywordsLabel.setText(QCoreApplication.translate("MainWindow", u"Selected keywords (max 10):", None))
         self.keywordsList.setText("")
         self.chooseOperation.setText(QCoreApplication.translate("MainWindow", u"Choose Operation", None))
         self.swapRhymes.setText(QCoreApplication.translate("MainWindow", u"Swap rhymes", None))

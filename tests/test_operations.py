@@ -1,5 +1,5 @@
 import json
-from operations import (
+from paraphrase_generator.operations import (
     lines_to_text,
     text_to_lines,
     get_paraphrase,
@@ -14,7 +14,7 @@ from operations import (
 )
 
 
-with open('test_data.json', 'r') as file:
+with open('constants/test_data.json', 'r') as file:
     test_data = json.load(file)
 
 
@@ -35,14 +35,14 @@ def test_text_to_lines():
 
 
 def test_get_paraphrase(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     word = 'forgetful'
     paraphrase = get_paraphrase(word, 'rhymes')
     assert paraphrase == 'fretful'
 
 
 def test_swap_word(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     sentance = test_data['lines'][0]
     keywords = test_data['keywords']
     result = swap_word(sentance, keywords)
@@ -50,7 +50,7 @@ def test_swap_word(monkeypatch):
 
 
 def test_add_word(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     sentance = test_data['lines'][0]
     keywords = test_data['keywords']
     result = add_word(sentance, keywords)
@@ -58,7 +58,7 @@ def test_add_word(monkeypatch):
 
 
 def test_perform_operation(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     text_lines = test_data['lines']
     keywords = test_data['keywords'].keys()
     result = perform_operation(
@@ -71,7 +71,7 @@ def test_perform_operation(monkeypatch):
 
 
 def test_swap_rhymes(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     input_text = test_data['text']
     keywords = test_data['keywords'].keys()
     result = swap_rhymes(input_text, keywords)
@@ -79,7 +79,7 @@ def test_swap_rhymes(monkeypatch):
 
 
 def test_swap_synonyms(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     input_text = test_data['text']
     keywords = test_data['keywords'].keys()
     result = swap_synonyms(input_text, keywords)
@@ -87,7 +87,7 @@ def test_swap_synonyms(monkeypatch):
 
 
 def test_swap_homophones_not_found(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     input_text = test_data['text']
     keywords = test_data['keywords'].keys()
     result = swap_homophones(input_text, keywords)
@@ -95,7 +95,7 @@ def test_swap_homophones_not_found(monkeypatch):
 
 
 def test_swap_homonyms_not_found(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     input_text = test_data['text']
     keywords = test_data['keywords'].keys()
     result = swap_homonyms(input_text, keywords)
@@ -103,7 +103,7 @@ def test_swap_homonyms_not_found(monkeypatch):
 
 
 def test_add_adjectives(monkeypatch):
-    monkeypatch.setattr('operations.choice', pick1st)
+    monkeypatch.setattr('paraphrase_generator.operations.choice', pick1st)
     input_text = test_data['text']
     keywords = test_data['keywords'].keys()
     result = add_adjectives(input_text, keywords)

@@ -3,12 +3,13 @@ from lyricsgenius import Genius
 from errors import TitleError
 
 
-def setup_genius():
+def setup_genius() -> "Genius":
     """
-    This method sets genius object atrributes to
-    properly retrive data and returns it.
+    This method creates a Genius object and sets its
+    atrributes to properly retrive data and returns it.
+    It is done to access Genius API.
     """
-    with open('genius_authorization.json', 'r') as file:
+    with open('constants/genius_authorization.json', 'r') as file:
         genius_data = json.load(file)
     genius = Genius(genius_data["access_token"])
     exclude = [
@@ -24,13 +25,14 @@ def setup_genius():
         'album',
         'genius'
     ]
+    # excludes given terms from search results
     genius.excluded_terms = exclude
     genius.verbose = False
     genius.remove_section_headers = True
     return genius
 
 
-def get_song(title, artist=''):
+def get_song(title: str, artist='') -> "Song":
     """
     This method creates Song object based on title
     and artist parameters and returns it.
@@ -62,7 +64,7 @@ class Song:
     :param lyrics: lyrics of the song
     :type lyrics: str
     """
-    def __init__(self, title, artist='', lyrics=''):
+    def __init__(self, title: str, artist='', lyrics=''):
         self._title = title
         self._artist = artist
         self._lyrics = lyrics

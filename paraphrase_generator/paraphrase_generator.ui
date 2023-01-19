@@ -288,7 +288,7 @@
        <item>
         <widget class="QLabel" name="selectedKeywordsLabel">
          <property name="text">
-          <string>Selected keywords (max 5):</string>
+          <string>Selected keywords (max 10):</string>
          </property>
         </widget>
        </item>
@@ -296,6 +296,9 @@
         <widget class="QLabel" name="keywordsList">
          <property name="text">
           <string/>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

@@ -2,14 +2,14 @@ import requests
 import json
 
 
-with open('poem_endpoints.json', 'r') as file:
+with open('constants/poem_endpoints.json', 'r') as file:
     urls = json.load(file)
 
 
-def get_authors():
+def get_authors() -> list:
     """
     Retrives list of authors and returns a list
-    of objects based on them.
+    of Author objects based on them.
     """
     all_authors = requests.get(urls['authors']).json()
     return [Author(author_name) for author_name in all_authors['authors']]
@@ -22,7 +22,7 @@ class Author:
     :param name: name of the author
     :type name: str
     """
-    def __init__(self, name):
+    def __init__(self, name: str):
         self._name = name
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Author:
     def name(self):
         return self._name
 
-    def poems(self):
+    def poems(self) -> list:
         """
         Returns list of poems of an author.
         """
@@ -56,7 +56,7 @@ class Poem:
     :param title: title of the poem
     :type title: str
     """
-    def __init__(self, author, title):
+    def __init__(self, author: "Author", title: str):
         self._author = author
         self._title = title
 
@@ -71,11 +71,11 @@ class Poem:
     def title(self):
         return self._title
 
-    def text(self):
+    def text(self) -> str:
         """
         Retrives text of a poem from database and returns it.
         """
-        author = self._author.name()
+        author = self._author.name
         title = self._title
         text_item = requests.get(urls['poem'].format(
             author=author,

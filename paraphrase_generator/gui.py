@@ -26,6 +26,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
         self._setupKeywords()
         self.ui.stack.setCurrentIndex(0)
         self.ui.tabWidget.setCurrentIndex(0)
+        self.showMaximized()
 
     def _setupOperations(self):
         """
@@ -101,6 +102,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
         """
         self.keywords = []
         self.ui.keywordsList.clear()
+        self.ui.inputKeyword.clear()
 
     def _addKeyword(self):
         """
@@ -108,7 +110,7 @@ class ParaphraseGeneratorWindow(QMainWindow):
         """
         new_keyword = self.ui.inputKeyword.text().lower().strip()
         keywords = self.keywords
-        if new_keyword and len(keywords) < 5 and new_keyword not in keywords:
+        if new_keyword and len(keywords) < 10 and new_keyword not in keywords:
             self.keywords.append(new_keyword)
             self.ui.keywordsList.setText((', '.join(keywords).lstrip(', ')))
             self.ui.inputKeyword.clear()
@@ -131,12 +133,12 @@ class ParaphraseGeneratorWindow(QMainWindow):
         as a QListWidget.
         """
         self.ui.stack.setCurrentIndex(1)
-        titles = item.author.titles()
+        poems = item.author.poems()
         self.ui.titleList.clear()
-        for title in titles:
-            title_item = QListWidgetItem(title.title())
-            title_item.title = title
-            self.ui.titleList.addItem(title_item)
+        for poem in poems:
+            poem_item = QListWidgetItem(poem.title)
+            poem_item.title = poem
+            self.ui.titleList.addItem(poem_item)
 
     def _selectTitle(self, item):
         """

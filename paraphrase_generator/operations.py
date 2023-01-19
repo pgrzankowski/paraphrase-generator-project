@@ -4,13 +4,14 @@ from string import punctuation
 from random import choice
 
 
-with open('paraphrase_endpoints.json', 'r') as file:
+with open('constants/paraphrase_endpoints.json', 'r') as file:
     urls = json.load(file)
 
 
 def lines_to_text(lines: list) -> str:
     """
-    Transforms list of strings into string and returns it.
+    Takes list of strings as an argument.
+    Transforms it into one string and returns it.
     """
     text = ''
     for line in lines:
@@ -20,8 +21,9 @@ def lines_to_text(lines: list) -> str:
 
 def text_to_lines(text: str) -> list:
     """
-    Transforms string separeted with '\n' into list
-    of strings and retruns that list.
+    Takes string as an argument.
+    Transforms it into a list of its substrings
+    where '\n' is the separator and retruns that list.
     """
     lines = text.split('\n')
     return [line + '\n' for line in lines][:-1]
@@ -29,8 +31,9 @@ def text_to_lines(text: str) -> list:
 
 def get_paraphrase(word: str, param: str) -> str:
     """
-    Gets random paraphrase of the chosen type
-    (rhyme, synonym, etc.) and returns it.
+    Takes word and paraphrasing option as arguments.
+    Gets random paraphrase of the chosen option (rhyme, synonym, etc.)
+    of the word and returns it.
     """
     all_paraphrases = requests.get(urls[param].format(word=word)).json()
     chosen_paraphrase = choice(all_paraphrases)['word']
@@ -39,8 +42,10 @@ def get_paraphrase(word: str, param: str) -> str:
 
 def swap_word(sentance: str, keywords: dict) -> str:
     """
-    Replaces keywords with their paraphrases and
-    returns new string created that way.
+    Takes a sentance and dictionary of keywords with their
+    replacements which will be swaped.
+    Replaces all keywords in the given sentance with their
+    paraphrases and returns new sentance created that way.
     """
     result = ''
     for word in sentance.split():
@@ -64,8 +69,10 @@ def swap_word(sentance: str, keywords: dict) -> str:
 
 def add_word(sentance: str, keywords: dict) -> str:
     """
-    Adds additional words before keywords with and
-    returns new string created that way.
+    Takes a sentance and dictionary of keywords with words
+    which will be added before them in text.
+    Adds all mapped words before keywords in the given sentance
+    with and returns new sentance created that way.
     """
     result = ''
     for word in sentance.split():
@@ -86,7 +93,8 @@ def add_word(sentance: str, keywords: dict) -> str:
     return result.rstrip() + '\n'
 
 
-def perform_operation(text_lines: list, keywords: list, param: str, operation) -> str:
+def perform_operation(text_lines: list, keywords: list, param: str,
+                      operation) -> str:
     """
     Performs chosen operation on list of strings (text_lines)
     and returns it as one string.
