@@ -1,6 +1,6 @@
 import json
 from lyricsgenius import Genius
-from errors import TitleError
+from my_errors import TitleError
 
 
 def setup_genius() -> "Genius":
@@ -8,6 +8,11 @@ def setup_genius() -> "Genius":
     This method creates a Genius object and sets its
     atrributes to properly retrive data and returns it.
     It is done to access Genius API.
+
+    Returns:
+        genius (Genius object): Properly set up Genius object
+                                which allows for pecise song
+                                searching.
     """
     with open('constants/genius_authorization.json', 'r') as file:
         genius_data = json.load(file)
@@ -36,6 +41,14 @@ def get_song(title: str, artist='') -> "Song":
     """
     This method creates Song object based on title
     and artist parameters and returns it.
+
+    Parameters:
+        title (str): Title of the searched song.
+        artist (str): Artist of the searched song.
+
+    Returns:
+        song (Song object): Song found in database based
+                            on given title and artist.
     """
     if title:
         genius = setup_genius()
@@ -71,12 +84,21 @@ class Song:
 
     @property
     def title(self):
+        """
+        Returns title of the song.
+        """
         return self._title
 
     @property
     def artist(self):
+        """
+        Returns artist of the song.
+        """
         return self._artist
 
     @property
     def lyrics(self):
+        """
+        Returns lyrics of the song.
+        """
         return self._lyrics

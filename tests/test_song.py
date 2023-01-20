@@ -1,5 +1,5 @@
 from paraphrase_generator.song import Song, get_song
-from paraphrase_generator.errors import TitleError
+from paraphrase_generator.my_errors import TitleError
 import pytest
 
 

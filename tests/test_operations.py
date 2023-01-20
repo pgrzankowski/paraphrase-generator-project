@@ -10,9 +10,8 @@ from paraphrase_generator.operations import (
     swap_synonyms,
     swap_homophones,
     swap_homonyms,
-    add_adjectives
+    add_adjectives,
 )
-
 
 with open('constants/test_data.json', 'r') as file:
     test_data = json.load(file)
