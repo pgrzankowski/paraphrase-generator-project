@@ -1,0 +1,28 @@
+{
+    "lines": [
+        "This is the forgetful line!\n",
+        "That is the, forgetful one@\n",
+        "and it is a third. Perfect\n"
+    ],
+    "swap_result": [
+        "This is the fretful design!\n",
+        "That is the, fretful one@\n",
+        "and it is a third. Perfect\n"
+    ],
+    "add_result": [
+        "This is the fretful forgetful design line!\n",
+        "That is the, fretful forgetful one@\n",
+        "and it is a third. Perfect\n"
+    ],
+    "text": "This is the forgetful line!\nThat is the, forgetful one@\nand it is a third. Perfect\n",
+    "text_result": "This is the fretful design!\nThat is the, fretful one@\nand it is a third. Perfect\n",
+    "keywords": {
+        "forgetful": "fretful",
+        "line": "design"
+    },
+    "rhymes": "This is the fretful design!\nThat is the, fretful one@\nand it is a third. Perfect\n",
+    "synonyms": "This is the inattentive outline!\nThat is the, inattentive one@\nand it is a third. Perfect\n",
+    "homophones": "This is the forgetful line!\nThat is the, forgetful one@\nand it is a third. Perfect\n",
+    "homonyms": "This is the forgetful line!\nThat is the, forgetful one@\nand it is a third. Perfect\n",
+    "adjectives": "This is the little forgetful straight line!\nThat is the, little forgetful one@\nand it is a third. Perfect\n"
+}

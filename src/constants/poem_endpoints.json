@@ -1,0 +1,5 @@
+{
+    "authors": "https://poetrydb.org/author",
+    "titles": "https://poetrydb.org/author/{author}/title",
+    "poem": "https://poetrydb.org/author,title/{author};{title}"
+}
